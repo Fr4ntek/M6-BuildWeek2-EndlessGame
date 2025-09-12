@@ -12,11 +12,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float nextThreshold = 50f;  
     private float currentSpeed;
     private float distance;
+    private bool isRunning = false;
+    private Animator _anim;
+
     
 
     private void Start()
     {
         currentSpeed = moveSpeed;
+        _anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -42,6 +46,17 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D))
         {
             transform.Translate(Vector3.right * horizontalSpeed);
+        }
+
+        HandleAnimator();
+    }
+
+    void HandleAnimator()
+    {
+        if(currentSpeed > 0.1f)
+        {
+            isRunning = true;
+            _anim.SetBool("isRunning", isRunning);
         }
     }
 }

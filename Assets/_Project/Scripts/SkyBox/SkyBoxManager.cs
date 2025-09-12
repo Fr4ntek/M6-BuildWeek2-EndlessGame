@@ -9,7 +9,7 @@ public class SkyBoxManager : MonoBehaviour
     public Material[] skyboxes;        
 
    
-    public float changeEveryMeters = 500f;  
+    public float changeEveryMeters = 10f;  
     public float fadeDuration = 3f;         
 
     private int currentIndex = 0;      

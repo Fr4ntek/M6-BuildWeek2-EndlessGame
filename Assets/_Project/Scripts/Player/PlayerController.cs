@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -9,11 +10,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxSpeed = 20f;
     [SerializeField] private float horizontalSpeed = 2.5f;
     [SerializeField] private float speedIncrease = 3f;   
-    [SerializeField] private float nextThreshold = 50f;  
+    [SerializeField] private float nextThreshold = 50f;
+    private float _minX = -2.5f;
+    private float _maxX = 2.5f;
     private float currentSpeed;
     private float distance;
     private bool isRunning = false;
     private Animator _anim;
+    
 
     
 
@@ -41,11 +45,13 @@ public class PlayerController : MonoBehaviour
         // movimento laterale
         if (Input.GetKeyDown(KeyCode.A))
         {
-            transform.Translate(Vector3.left * horizontalSpeed);
+            float posX = Mathf.Clamp(transform.position.x - horizontalSpeed, _minX, _maxX);
+            transform.position =new Vector3(posX, transform.position.y, transform.position.z);
         }
-        if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.D))
         {
-            transform.Translate(Vector3.right * horizontalSpeed);
+            float posX = Mathf.Clamp(transform.position.x + horizontalSpeed, _minX, _maxX);
+            transform.position =new Vector3(posX, transform.position.y, transform.position.z);
         }
 
         HandleAnimator();

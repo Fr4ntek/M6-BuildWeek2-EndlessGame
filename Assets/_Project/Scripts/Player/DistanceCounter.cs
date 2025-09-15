@@ -15,6 +15,7 @@ public class DistanceCounter : MonoBehaviour
     {
         if (player == null) player = transform;
         startPos = player.position;
+        AudioManager.instance.PlaySound();
     }
 
     void Update()

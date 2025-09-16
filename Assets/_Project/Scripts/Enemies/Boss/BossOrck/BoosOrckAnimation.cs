@@ -26,6 +26,7 @@ public class AnimationSettingBossOne
 
 public class BoosOrckAnimation : BossAnimation
 {
+    [Header("Setting")]
     [SerializeField] private Transform root;
     [SerializeField] private Transform body;
     [SerializeField] private Transform arti;
@@ -41,8 +42,6 @@ public class BoosOrckAnimation : BossAnimation
 
     [SerializeField] private float velocityMovementIdle = 1.5f;
     [SerializeField] private float velocityToIdle = 1.5f;
-
-    [SerializeField] private float forceForAttack = 500;
 
     [SerializeField] private List<AnimationSettingBossOne> typeOfAnimationList;
 

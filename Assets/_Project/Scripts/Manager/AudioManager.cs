@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource _sfxAudio;
     [SerializeField] private AudioClip _soundAudio;
     [SerializeField] private AudioClip _coinSound;
+    [SerializeField] private AudioClip _asteroidSound;
 
     public static AudioManager instance;
 
@@ -41,6 +42,14 @@ public class AudioManager : MonoBehaviour
         if (_coinSound != null)
         {
             _sfxAudio.PlayOneShot(_coinSound);
+        }
+    }
+
+    public void PlayAsteroidSound()
+    {
+        if (_asteroidSound != null)
+        {
+            _sfxAudio.PlayOneShot(_asteroidSound);
         }
     }
 }

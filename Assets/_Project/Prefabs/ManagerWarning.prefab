@@ -44,8 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c466e99467e574ab7d61dd1d5aeacc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  warning: {fileID: 0}
   player: {fileID: 0}
-  lines: 0400000000000000fcffffff
-  warningPreFab: {fileID: 2946144605685907373, guid: d829b27c8028f8b4386d74a31853da9a, type: 3}
+  lines: 0300000000000000fdffffff
+  warningPreFab: {fileID: 2946144605685907373, guid: d829b27c8028f8b4386d74a31853da9a,
+    type: 3}
   warningDistanceToPlayer: 10
   timeForEachWarning: 3

@@ -1,47 +1,82 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using System.IO;
+
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameObject gameOverUI;
     public static GameManager instance;
 
-    void Awake()
+    public SaveData saveData = new SaveData();
+
+    private string saveFilePath;
+
+    private void Awake()
     {
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
+            saveFilePath = Path.Combine(Application.persistentDataPath, "save.json");
+            LoadData();
         }
-        else Destroy(gameObject);
-    }
-
-    void Start()
-    {
-        if (gameOverUI != null)
+        else
         {
-            gameOverUI.SetActive(false);
+            Destroy(gameObject);
         }
     }
 
-    public void GameOver()
+    public void EndRun()
     {
-        if (gameOverUI != null)
+       
+        AddCoinsFromRun(CoinManager.Instance._coinCount);
+
+        
+        int runDistance = DistanceCounter.instance.GetDistance();
+        SaveRunDistance(runDistance);
+
+       
+        CoinManager.Instance._coinCount = 0;
+        DistanceCounter.instance.ResetDistance();
+
+        SaveDataToFile();
+    }
+
+    
+    public void AddCoinsFromRun(int coins)
+    {
+        saveData.totalCoins += coins;
+    }
+
+    
+    public void SaveRunDistance(int distance)
+    {
+        saveData.leaderboardDistances.Add(distance);
+        saveData.leaderboardDistances.Sort((a, b) => b.CompareTo(a));
+
+        if (saveData.leaderboardDistances.Count > 10) 
+            saveData.leaderboardDistances.RemoveAt(saveData.leaderboardDistances.Count - 1);
+    }
+
+    
+    public void SaveDataToFile()
+    {
+        string json = JsonUtility.ToJson(saveData, true);
+        File.WriteAllText(saveFilePath, json);
+    }
+
+    public void LoadData()
+    {
+        if (File.Exists(saveFilePath))
         {
-            gameOverUI.SetActive(true);
-            Time.timeScale = 0f;
+            string json = File.ReadAllText(saveFilePath);
+            saveData = JsonUtility.FromJson<SaveData>(json);
         }
-    }
-
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(1);
-        Time.timeScale = 1f;
-    }
-
-    public void ExitGame()
-    {
-      SceneManager.LoadScene(0);
+        else
+        {
+            saveData = new SaveData();
+        }
     }
 }
+

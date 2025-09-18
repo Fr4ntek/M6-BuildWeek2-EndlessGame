@@ -11,6 +11,17 @@ public class DistanceCounter : MonoBehaviour
     private Vector3 startPos;
     private float distance;
 
+    public static DistanceCounter instance;
+
+    private void Awake()
+    {
+       if (instance == null)
+         {
+           instance = this;
+         }
+          else Destroy(gameObject);
+    }
+
     void Start()
     {
         if (player == null) player = transform;
@@ -27,6 +38,16 @@ public class DistanceCounter : MonoBehaviour
 
        
         distanceText.text = Mathf.FloorToInt(metri).ToString();
+    }
+
+    public int GetDistance()
+    {
+        return Mathf.FloorToInt(distance);
+    }
+
+    public void ResetDistance()
+    {
+        distance = 0;
     }
 }
 

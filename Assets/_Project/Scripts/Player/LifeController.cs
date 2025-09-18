@@ -33,7 +33,7 @@ public class LifeController : MonoBehaviour
         }
         else
         {
-            GameManager.instance.GameOver();
+            GameOverManager.instance.GameOver();
         }
     }
 

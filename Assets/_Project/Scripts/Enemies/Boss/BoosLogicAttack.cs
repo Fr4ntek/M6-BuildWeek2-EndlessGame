@@ -5,11 +5,16 @@ using UnityEngine;
 public class BoosLogicAttack : MonoBehaviour
 {
     [SerializeField] protected Transform player;
+    [SerializeField] protected BossAnimation bossAnimation;
 
-    protected BossAnimation bossAnimation;
+    public BossAnimation BossAnimation => bossAnimation;
+    public Transform Player => player;
 
-    public virtual void Start() => bossAnimation.GetComponent<BossAnimation>();
+    public virtual void EnableLogicBoss() { }
 
-    public virtual void Attack() { }
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
 
 }

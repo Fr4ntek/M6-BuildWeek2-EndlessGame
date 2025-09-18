@@ -18,7 +18,7 @@ public class ShakeAnimation : BossAnimation
     [SerializeField] private Vector3 headIdlePositionTwo;
     [SerializeField] private Vector3 headIdleRotationTwo;
 
-    [Header("Attack Ultimate")]
+    [Header("EnableLogicBoss Ultimate")]
     [SerializeField] private Vector3 headAttackPositionOne;
     [SerializeField] private Vector3 headAttackRotationOne;
 
@@ -28,7 +28,7 @@ public class ShakeAnimation : BossAnimation
     [SerializeField] private Vector3 headAttackPositionTree;
     [SerializeField] private Vector3 headAttackRotationTree;
 
-
+    private bool isOnAnimationStar;
     private Vector3 startLocalPositionHead;
     private Quaternion startLocalRotationHead;
 
@@ -60,6 +60,17 @@ public class ShakeAnimation : BossAnimation
         head.rotation *= Quaternion.Euler(offsetRotation);
     }
 
+
+    [ContextMenu("GoToDisableAnimation")]
+    public override void GoToDisableAnimation()
+    {
+        if (isOnAnimationStar) return;
+        StopAllCoroutines();
+        lookPlayer = false;
+        isOnAnimationStar = true;
+        StartCoroutine(GoToStarAnimationRoutione());
+    }
+
     private IEnumerator IdleShakeRoutine()
     {
         lookPlayer = true;
@@ -79,6 +90,7 @@ public class ShakeAnimation : BossAnimation
     [ContextMenu("GoIdle")]
     public override void GoIdle()
     {
+        if (isOnAnimationStar) return;
         StopAllCoroutines();
         StartCoroutine(IdleShakeRoutine());
     }
@@ -86,20 +98,24 @@ public class ShakeAnimation : BossAnimation
     [ContextMenu("AttackOne")]
     public override void GoAttackOne()
     {
+        if (isOnAnimationStar) return;
         StopAllCoroutines();
-        StartCoroutine(AttackOneRoutine(180, -2.5f, 0, -300));
+        StartCoroutine(AttackOneRoutine(180, -2f, 0, -300));
     }
 
     [ContextMenu("GoAttackTwo")]
     public override void GoAttackTwo()
     {
+        if (isOnAnimationStar) return;
+        Debug.Log("GoAttackTwo");
         StopAllCoroutines();
-        StartCoroutine(AttackOneRoutine(-180, 2.5f, 0, 300));
+        StartCoroutine(AttackOneRoutine(-180, 1.5f, 0, 300));
     }
 
     [ContextMenu("GoAttackUltimate")]
     public override void GoAttackUltimate()
     {
+        if (isOnAnimationStar) return;
         StopAllCoroutines();
         StartCoroutine(AttackShankeRoutine());
     }
@@ -129,7 +145,7 @@ public class ShakeAnimation : BossAnimation
 
         currentPosition = head.localPosition;
         currentRotation = head.localRotation;
-        //Attack
+        //EnableLogicBoss
         yield return StartCoroutine(LerpPositionRotationRoutine(head, 1, currentPosition, currentRotation, headAttackPositionTree, Quaternion.Euler(headAttackRotationTree), false));
 
 
@@ -166,17 +182,18 @@ public class ShakeAnimation : BossAnimation
             constant.force = targetForceTail;
         }
 
-        //Preparation Attack
+        Debug.Log("Fase1");
+        //Preparation EnableLogicBoss
         yield return StartCoroutine(LerpPositionRotationRoutine(head, 3, currentPosition, currentRotation, headPosAttackOne, currentRotation, true));
 
 
-        float flipX = posX > 0 ? -posX * posX : Mathf.Abs(posX) * Mathf.Abs(posX);
-        headPosAttackOne = currentPosition + new Vector3(targetX, -0.5f, -4);
+        float flipX = posX > 0 ? -posX * posX : Mathf.Abs(posX) * Mathf.Abs(posX/1.5f);
+        headPosAttackOne = currentPosition + new Vector3(flipX, -0.5f, -10);
 
         currentPosition = head.localPosition;
         currentRotation = head.localRotation;
+        Debug.Log("Fase2");
         yield return StartCoroutine(LerpPositionRotationRoutine(head, 3, currentPosition, currentRotation, headPosAttackOne, currentRotation, false));
-
 
         currentPosition = head.localPosition;
         currentRotation = head.localRotation;
@@ -193,7 +210,8 @@ public class ShakeAnimation : BossAnimation
         Quaternion currentRotationTail = lastTail.localRotation;
 
         Vector3 targetPositionTail = new Vector3(0, -2.5f, -15);
-        //Rotation And Attack
+        //Rotation And EnableLogicBoss
+        Debug.Log("Fase3");
         yield return StartCoroutine(LerpPositionRotationRoutine(head, 1f, currentPosition, currentRotation, currentPosition, Quaternion.Euler(headRotAttackTwo), false));
 
         yield return new WaitForSeconds(0.5f);
@@ -201,6 +219,68 @@ public class ShakeAnimation : BossAnimation
         constant.force = originalForceTail;
         yield return StartCoroutine(PreparationToIlde(2));
         StartCoroutine(IdleShakeRoutine());
+    }
+
+
+    private IEnumerator GoToStarAnimationRoutione()
+    {
+        Vector3 currentPosition = head.localPosition;
+        Quaternion currentRotation = head.localRotation;
+
+        //
+        Quaternion targetRotPrimary = Quaternion.Euler(0f, 0f, 0f);
+        Quaternion targetRotSecondary = Quaternion.Euler(0f, 0f, 0f);
+
+        //
+
+        Debug.Log("GoToStarAnimation");
+        yield return StartCoroutine(LerpPositionRotationRoutine(head, 2, currentPosition, currentRotation, startLocalPositionHead, startLocalRotationHead,true));
+        Vector3 targetPosition = head.localPosition + new Vector3(0, 20, 0);
+        yield return StartCoroutine(LerpPositionRotationRoutine(head, 1, startLocalPositionHead, startLocalRotationHead, targetPosition, startLocalRotationHead,false));
+
+        //root.gameObject.SetActive(false);
+        //root.localPosition = new Vector3(0, 0, 0);
+
+        StartCoroutine(DisableRoutine());
+    }
+
+    private IEnumerator DisableRoutine()
+    {
+        //yield return null;
+        //body.localPosition = startLocalPosition;
+        //body.localRotation = startLocalRotation;
+
+        //yield return new WaitForSeconds(1f);
+        yield return null;
+        isOnAnimationStar = false;
+        gameObject.SetActive(false);
+        //head.gameObject.SetActive(false);
+    }
+    private void OnEnable()
+    {
+        StartCoroutine(GoToEnableRoutine());
+    }
+
+    private void OnDisable()
+    {
+        if (lastTail.TryGetComponent(out ConstantForce constant))
+        {
+            constant.force = originalForceTail;
+        }
+    }
+
+    private IEnumerator GoToEnableRoutine()
+    {
+        yield return null;
+        transform.position = new Vector3(transform.position.x, transform.position.y, lookTarget.position.z + 100);
+        head.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+
+        Vector3 currentPos = head.localPosition;
+        Vector3 targetPos = new Vector3(0, 0, 0);
+        yield return StartCoroutine(LerpPositionRotationRoutine(head, 2, currentPos, head.localRotation, targetPos, head.localRotation,true));
+
+        GoIdle();
     }
 
 
@@ -234,5 +314,4 @@ public class ShakeAnimation : BossAnimation
         target.localPosition = targetPos;
         target.localRotation = targetRot;
     }
-
 }

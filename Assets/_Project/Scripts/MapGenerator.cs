@@ -17,7 +17,7 @@ public class MapGenerator : MonoBehaviour
     {
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject tile = Instantiate(GetRandomTile(), Vector3.forward * spawnZ, Quaternion.Euler(0,90,0));
+            GameObject tile = Instantiate(GetRandomTile(), Vector3.forward * spawnZ, tilePrefabs[0].transform.rotation);
             spawnZ += tileLength;
             tilePool.Enqueue(tile);
         }

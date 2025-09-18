@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossOrckLogicAttack : BoosLogicAttack
+public class BossShakeLogicAttack : BoosLogicAttack
 {
     [SerializeField] private float timeForEachAttack;
-    public override void EnableLogicBoss() {if (player != null) StartCoroutine(AttackRoutine());}
+    public override void EnableLogicBoss() { if (player != null) StartCoroutine(AttackRoutine()); }
 
     private IEnumerator AttackRoutine()
     {

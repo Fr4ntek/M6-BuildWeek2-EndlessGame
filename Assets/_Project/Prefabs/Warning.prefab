@@ -45,8 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
-  meteorPreFab: {fileID: 2104609678173370851, guid: e9dad3cb509b7b34b95608588e796452, type: 3}
-  timeForMeteorToReachWarning: 5
+  meteorPreFab: {fileID: 2104609678173370851, guid: e9dad3cb509b7b34b95608588e796452,
+    type: 3}
+  timeForMeteorToReachWarning: 4
   meteorCurve:
     serializedVersion: 2
     m_Curve:
@@ -60,24 +61,6 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.8480003
-      value: 0.7191044
-      inSlope: 1.6960006
-      outSlope: 1.6960006
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.93
-      value: 0.95
-      inSlope: 1.8749148
-      outSlope: 1.8749148
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
       time: 1
       value: 1
       inSlope: 2
@@ -89,4 +72,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  positionSpawnMeteorFromPlayer: {x: 0, y: 13, z: 10}
+  positionSpawnMeteorFromPlayer: {x: 0, y: 10, z: 150}

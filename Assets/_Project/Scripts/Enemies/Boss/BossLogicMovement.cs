@@ -41,18 +41,19 @@ public class BossLogicMovement : MonoBehaviour
 
                 parent.position = targetPos;
 
-                if (!canAttack) bossLogicAttack.Attack();
+                Debug.Log("CanAttack");
+                if (!canAttack) bossLogicAttack.EnableLogicBoss();
                 canAttack = true;
             }
         }
 
-        isGrounded = Physics.CheckSphere(groundCheckPoint.position, groundCheckRadius, groundLayer);
+        //isGrounded = Physics.CheckSphere(groundCheckPoint.position, groundCheckRadius, groundLayer);
 
-        if (!isGrounded && !animationGoStart)
-        {
-            animationGoStart = true;
-            bossAnimation.GoToDisableAnimation();
-        }
+        //if (!isGrounded && !animationGoStart)
+        //{
+        //    animationGoStart = true;
+        //    bossAnimation.GoToDisableAnimation();
+        //}
     }
 
     private void OnDisable()

@@ -59,10 +59,10 @@ public class PlayerController : MonoBehaviour
 
     void HandleAnimator()
     {
-        if(currentSpeed > 0.1f)
-        {
-            isRunning = true;
-            _anim.SetBool("isRunning", isRunning);
-        }
+        //if(currentSpeed > 0.1f)
+        //{
+        //    isRunning = true;
+        //    _anim.SetBool("isRunning", isRunning);
+        //}
     }
 }

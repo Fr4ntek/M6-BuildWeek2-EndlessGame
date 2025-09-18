@@ -27,6 +27,7 @@ public class AnimationSettingBossOne
 public class BoosOrckAnimation : BossAnimation
 {
     [Header("Setting")]
+    [SerializeField] private Transform player;
     [SerializeField] private Transform root;
     [SerializeField] private Transform body;
     [SerializeField] private Transform arti;
@@ -79,10 +80,19 @@ public class BoosOrckAnimation : BossAnimation
     [ContextMenu("GoToDisableAnimation")]
     public override void GoToDisableAnimation()
     {
+        if (isOnAnimationStar) return;
         StopAllCoroutines();
         isOnAnimationStar = true;
         StartCoroutine(GoToStarAnimationRoutione());
     }
+
+    [ContextMenu("GoToEnableAnimation")]
+    //public override void GoToEnableAnimation()
+    //{
+    //    StopAllCoroutines();
+    //    isOnAnimationStar = false;
+    //    StartCoroutine(GoToEnableRoutine());
+    //}
 
     #region Attack
 
@@ -104,6 +114,7 @@ public class BoosOrckAnimation : BossAnimation
     [ContextMenu("GoAttackUltimate")]
     public override void GoAttackUltimate()
     {
+        Debug.Log("GoAttackUltimate");
         if (isOnAnimationStar) return;
         StopAllCoroutines();
         StartCoroutine(ShootArmRoutine(BossTypeAttack.Ultimate));
@@ -111,6 +122,7 @@ public class BoosOrckAnimation : BossAnimation
 
     private IEnumerator ShootArmRoutine(BossTypeAttack attack)
     {
+        Debug.Log("Attack Animation");
         Vector3 currentPosition = body.localPosition;
         Quaternion currentRotation = body.localRotation;
 
@@ -217,24 +229,42 @@ public class BoosOrckAnimation : BossAnimation
         Vector3 targetPosition = root.localPosition + new Vector3(0, 20, 0);
         yield return StartCoroutine(LerpPositionRotationRoutine(root, 1, startLocalPosition, startLocalRotation, targetPosition, startLocalRotation));
 
-        root.gameObject.SetActive(false);
-        root.localPosition = new Vector3(0, 0, 0);
+        //root.gameObject.SetActive(false);
+        //root.localPosition = new Vector3(0, 0, 0);
 
         StartCoroutine(DisableRoutine());
-        isOnAnimationStar = false;
     }
 
     private IEnumerator DisableRoutine()
     {
+        //yield return null;
+        //body.localPosition = startLocalPosition;
+        //body.localRotation = startLocalRotation;
+
+        //yield return new WaitForSeconds(1f);
         yield return null;
-        body.localPosition = startLocalPosition;
-        body.localRotation = startLocalRotation;
-
-        yield return new WaitForSeconds(0.5f);
-        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-        yield return new WaitForSeconds(1f);
-
+        isOnAnimationStar = false;
+        gameObject.SetActive(false);
         root.gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(GoToEnableRoutine());
+    }
+
+    private IEnumerator GoToEnableRoutine()
+    {
+        yield return null;
+        transform.position = new Vector3(transform.position.x, transform.position.y, player.position.z + 100);
+        yield return new WaitForSeconds(0.5f);
+        root.gameObject.SetActive(true);
+
+        Vector3 currentPos = root.localPosition;
+        Vector3 targetPos = new Vector3(0, 0, 0);
+        yield return StartCoroutine(LerpPositionRotationRoutine(root,2,currentPos, root.localRotation, targetPos, root.localRotation));
+        
+        StartCoroutine(AnimationIdleRoutine());
     }
 
     private IEnumerator LerpPositionRotationRoutine(Transform target, float velocity, Vector3 currentPos, Quaternion currentRot, Vector3 targetPos, Quaternion targetRot)

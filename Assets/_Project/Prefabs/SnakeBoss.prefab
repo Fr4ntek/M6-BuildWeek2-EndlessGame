@@ -148,8 +148,8 @@ Transform:
   m_GameObject: {fileID: 965077047347378865}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 11.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 6.75}
+  m_LocalScale: {x: 0.65, y: 0.65, z: 0.65}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3253418235055754779}
@@ -362,7 +362,7 @@ ConstantForce:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 965077047347378865}
   m_Enabled: 1
-  m_Force: {x: 0, y: -800, z: 800}
+  m_Force: {x: 0, y: -100, z: 800}
   m_RelativeForce: {x: 0, y: 0, z: 0}
   m_Torque: {x: 0, y: 0, z: 0}
   m_RelativeTorque: {x: 0, y: 0, z: 0}
@@ -479,8 +479,8 @@ Transform:
   m_GameObject: {fileID: 1573626380064132811}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 9.75}
-  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_LocalPosition: {x: 0, y: 0, z: 5.75}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3253418235055754779}
@@ -695,6 +695,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7487981343714880907}
   - component: {fileID: 4747021539850985948}
+  - component: {fileID: 9056672338808497304}
   m_Layer: 0
   m_Name: Root
   m_TagString: Untagged
@@ -745,6 +746,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &9056672338808497304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3076226501084017595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6aa6b90688fa4e49b702afbb513aa6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  root: {fileID: 7487981343714880907}
+  distanceToMainteinPlayer: 15
+  groundCheckPoint: {fileID: 7487981343714880907}
+  groundCheckRadius: 0.5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &3611082689086384963
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,8 +796,8 @@ Transform:
   m_GameObject: {fileID: 3611082689086384963}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5.5}
-  m_LocalScale: {x: 1.75, y: 1.75, z: 1.75}
+  m_LocalPosition: {x: 0, y: 0, z: 3.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3253418235055754779}
@@ -1011,7 +1032,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1794753781773036952}
@@ -1182,8 +1203,8 @@ Transform:
   m_GameObject: {fileID: 4290429873571549991}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 3}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3253418235055754779}
@@ -1431,6 +1452,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3070815974107421522}
   - component: {fileID: 5207209559344866905}
+  - component: {fileID: 2287711774584297537}
   m_Layer: 0
   m_Name: SnakeBoss
   m_TagString: Untagged
@@ -1481,6 +1503,21 @@ MonoBehaviour:
   headAttackRotationTwo: {x: -45, y: 0, z: 0}
   headAttackPositionTree: {x: 0, y: 0, z: -50}
   headAttackRotationTree: {x: 45, y: 0, z: 0}
+--- !u!114 &2287711774584297537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6193068434280646667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ade34de62d496449a404d30fc6449b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  bossAnimation: {fileID: 5207209559344866905}
+  timeForEachAttack: 8
 --- !u!1 &7005128157148303909
 GameObject:
   m_ObjectHideFlags: 0
@@ -1511,8 +1548,8 @@ Transform:
   m_GameObject: {fileID: 7005128157148303909}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 7.75}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalPosition: {x: 0, y: 0, z: 4.75}
+  m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3253418235055754779}

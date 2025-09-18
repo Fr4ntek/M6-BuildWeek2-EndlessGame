@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SkyBoxManager : MonoBehaviour
-{
-   
+{  
     public Transform player;          
     public Material[] skyboxes;        
 
@@ -46,27 +46,30 @@ public class SkyBoxManager : MonoBehaviour
             currentIndex = zoneIndex;
             RenderSettings.skybox = skyboxes[toIndex];
             DynamicGI.UpdateEnvironment();
-           
         }
     }
 
-    ////private IEnumerator FadeSkybox(Material fromSky, Material toSky)
-    //{
-    //    isFading = true;
-    //    float t = 0f;
+    private IEnumerator FadeSkybox(Material fromSky, Material toSky)
+    {
+        isFading = true;
+        float t = 0f;
 
-    //    while (t < 1f)
-    //    {
-    //        t += Time.deltaTime / fadeDuration;
+        while (t < 1f)
+        {
+            t += Time.deltaTime / fadeDuration;
 
-    //        // Interpolazione tra skybox
-    //        RenderSettings.skybox.
-    //        yield return null;
-    //    }
+            // Interpolazione tra skybox
+            RenderSettings.skybox.Lerp(fromSky, toSky, t);
 
-    //    // Alla fine assicura skybox finale corretto
-    //    RenderSettings.skybox = toSky;
-    //    isFading = false;
-    //}
+            // Aggiorna illuminazione globale
+            DynamicGI.UpdateEnvironment();
+
+            yield return null;
+        }
+
+        // Alla fine assicura skybox finale corretto
+        RenderSettings.skybox = toSky;
+        isFading = false;
+    }
 }
 

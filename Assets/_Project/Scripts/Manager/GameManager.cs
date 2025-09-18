@@ -8,12 +8,14 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public SaveData saveData = new SaveData();
+    public SaveData SaveData { get; private set; }
 
     private string saveFilePath;
 
     private void Awake()
     {
+        SaveData = new SaveData();
+
         if (instance == null)
         {
             instance = this;
@@ -46,23 +48,23 @@ public class GameManager : MonoBehaviour
     
     public void AddCoinsFromRun(int coins)
     {
-        saveData.totalCoins += coins;
+        SaveData.totalCoins += coins;
     }
 
     
     public void SaveRunDistance(int distance)
     {
-        saveData.leaderboardDistances.Add(distance);
-        saveData.leaderboardDistances.Sort((a, b) => b.CompareTo(a));
+        SaveData.leaderboardDistances.Add(distance);
+        SaveData.leaderboardDistances.Sort((a, b) => b.CompareTo(a));
 
-        if (saveData.leaderboardDistances.Count > 10) 
-            saveData.leaderboardDistances.RemoveAt(saveData.leaderboardDistances.Count - 1);
+        if (SaveData.leaderboardDistances.Count > 10) 
+            SaveData.leaderboardDistances.RemoveAt(SaveData.leaderboardDistances.Count - 1);
     }
 
     
     public void SaveDataToFile()
     {
-        string json = JsonUtility.ToJson(saveData, true);
+        string json = JsonUtility.ToJson(SaveData, true);
         File.WriteAllText(saveFilePath, json);
     }
 
@@ -71,11 +73,11 @@ public class GameManager : MonoBehaviour
         if (File.Exists(saveFilePath))
         {
             string json = File.ReadAllText(saveFilePath);
-            saveData = JsonUtility.FromJson<SaveData>(json);
+            SaveData = JsonUtility.FromJson<SaveData>(json);
         }
         else
         {
-            saveData = new SaveData();
+            SaveData = new SaveData();
         }
     }
 }

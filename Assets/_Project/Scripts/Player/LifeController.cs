@@ -27,7 +27,7 @@ public class LifeController : MonoBehaviour
     public void LoseLife()
     {
         currentLife--;
-        if (currentLife > 0)
+        if (currentLife > 1)
         {
             RespawnPlayer();
         }

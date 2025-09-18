@@ -52,5 +52,13 @@ public class AudioManager : MonoBehaviour
             _sfxAudio.PlayOneShot(_asteroidSound);
         }
     }
+
+    public void StopSound()
+    {
+        if (_maxAudio.isPlaying)
+        {
+            _maxAudio.Stop();
+        }
+    }
 }
 

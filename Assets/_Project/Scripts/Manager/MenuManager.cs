@@ -50,20 +50,20 @@ public class MenuManager : MonoBehaviour
 
     public void UpdateShopUI()
     {
-        coinText.text = GameManager.instance.saveData.totalCoins.ToString();
+        coinText.text = GameManager.instance.SaveData.totalCoins.ToString();
     }
 
     public void UpdateScoreUI()
     {
         scoreText.text = "🏆 Leaderboard 🏆\n";
         int rank = 1;
-        foreach (int score in GameManager.instance.saveData.leaderboardDistances)
+        foreach (int score in GameManager.instance.SaveData.leaderboardDistances)
         {
             scoreText.text += rank + ". " + score + " m\n";
             rank++;
         }
 
-        if (GameManager.instance.saveData.leaderboardDistances.Count == 0)
+        if (GameManager.instance.SaveData.leaderboardDistances.Count == 0)
         {
             scoreText.text += "Nessun punteggio ancora registrato!";
         }

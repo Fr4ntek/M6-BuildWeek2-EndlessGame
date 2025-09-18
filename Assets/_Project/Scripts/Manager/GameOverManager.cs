@@ -31,6 +31,7 @@ public class GameOverManager : MonoBehaviour
         {
             GameManager.instance.EndRun();
             gameOverUI.SetActive(true);
+            AudioManager.instance.StopSound();
             Time.timeScale = 0f;
         }
     }
@@ -38,6 +39,7 @@ public class GameOverManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(1);
+        AudioManager.instance.PlaySound();
         Time.timeScale = 1f;
     }
 

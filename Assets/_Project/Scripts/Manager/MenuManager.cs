@@ -37,7 +37,7 @@ public class MenuManager : MonoBehaviour
         mainMenu.enabled = false;
         leaderBoard.enabled = false;
         shopMenu.enabled = true;
-        UpdateShopUI();
+        //UpdateShopUI();
     }
 
     public void ShowScore()

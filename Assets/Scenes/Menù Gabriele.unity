@@ -476,6 +476,8 @@ GameObject:
   - component: {fileID: 756374740}
   - component: {fileID: 756374739}
   - component: {fileID: 756374741}
+  - component: {fileID: 756374742}
+  - component: {fileID: 756374743}
   m_Layer: 0
   m_Name: Menu Manager
   m_TagString: Untagged
@@ -613,6 +615,31 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &756374742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756374738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88511911642a47849a1c8f0e7d89c9b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coins: 100
+--- !u!114 &756374743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756374738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dace064bc023d8843b93fea9c546ca47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1084926952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1725,6 +1752,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4656759259940952741, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: wallet
+      value: 
+      objectReference: {fileID: 756374742}
     - target: {fileID: 4886985402655810275, guid: e03f83787eede0745aae4156168ae270,
         type: 3}
       propertyPath: m_Looping
@@ -1759,6 +1791,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: ShowMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8698977763420961220, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: wallet
+      value: 
+      objectReference: {fileID: 756374742}
+    - target: {fileID: 8698977763420961220, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 756374743}
+    - target: {fileID: 8734801648100839284, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734801648100839284, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734801648100839284, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734801648100839284, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734801648100839284, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734801648100839284, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

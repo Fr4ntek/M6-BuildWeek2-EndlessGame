@@ -368,25 +368,18 @@ PrefabInstance:
       objectReference: {fileID: 1632990675}
     - target: {fileID: 6963944332673755673, guid: d3fc6c2fc5441814f8ad3b5adcee59ff,
         type: 3}
-      propertyPath: warning
-      value: 
-      objectReference: {fileID: 1979915981806522150, guid: d829b27c8028f8b4386d74a31853da9a,
-        type: 3}
-    - target: {fileID: 6963944332673755673, guid: d3fc6c2fc5441814f8ad3b5adcee59ff,
-        type: 3}
-      propertyPath: warningi
-      value: 
-      objectReference: {fileID: 1979915981806522150, guid: d829b27c8028f8b4386d74a31853da9a,
-        type: 3}
-    - target: {fileID: 6963944332673755673, guid: d3fc6c2fc5441814f8ad3b5adcee59ff,
-        type: 3}
-      propertyPath: lines.Array.data[0]
+      propertyPath: lines.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6963944332673755673, guid: d3fc6c2fc5441814f8ad3b5adcee59ff,
         type: 3}
-      propertyPath: lines.Array.data[2]
+      propertyPath: lines.Array.data[0]
       value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6963944332673755673, guid: d3fc6c2fc5441814f8ad3b5adcee59ff,
+        type: 3}
+      propertyPath: lines.Array.data[2]
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -524,7 +517,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -28.999939, y: 33}
+  m_AnchoredPosition: {x: -29, y: 33}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &761071037
@@ -1377,6 +1370,59 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1381472734}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1646007603
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1646007605}
+  - component: {fileID: 1646007604}
+  m_Layer: 0
+  m_Name: MeteorPoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1646007604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646007603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e43990e2fe1e2a24fa3819505e04c493, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - id: Warning
+    prefab: {fileID: 1979915981806522150, guid: d829b27c8028f8b4386d74a31853da9a,
+      type: 3}
+    size: 5
+  - id: Meteor
+    prefab: {fileID: 5769375371698384013, guid: 368f6ccd5bcf85a418839bff2fb2ad6d,
+      type: 3}
+    size: 5
+--- !u!4 &1646007605
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646007603}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.2403966, y: 1.7085942, z: -3.778345}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1819852483
 GameObject:
   m_ObjectHideFlags: 0
@@ -1647,3 +1693,4 @@ SceneRoots:
   - {fileID: 1381472734}
   - {fileID: 371415494}
   - {fileID: 4051873}
+  - {fileID: 1646007605}

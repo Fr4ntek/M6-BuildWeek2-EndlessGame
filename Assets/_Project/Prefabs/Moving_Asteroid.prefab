@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5084370675817618615}
   - component: {fileID: 8447245549246992453}
   - component: {fileID: 7633333120902976937}
+  - component: {fileID: 1206115628770240994}
   m_Layer: 0
   m_Name: Moving_Asteroid
   m_TagString: Untagged
@@ -27,10 +28,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2457236285702035017}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.5000001, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -105,3 +106,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.259935
   m_Center: {x: 0.010361671, y: 0.0052381754, z: 0.0195086}
+--- !u!114 &1206115628770240994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2457236285702035017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0243c3dcf2b220e43878711f28837e6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newLocation: {x: 0, y: 5, z: 0}
+  speedMoving: 0.6
+  hasRandomSpeed: 0
+  minRandomSpeed: 1.5
+  maxRandomSpeed: 3

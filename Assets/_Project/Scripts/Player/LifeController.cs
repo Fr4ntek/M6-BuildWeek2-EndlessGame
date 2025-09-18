@@ -52,7 +52,7 @@ public class LifeController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") || other.CompareTag("Obstacles"))
+        if (other.CompareTag("Enemy") || other.CompareTag("Obstacle"))
         {
             LoseLife();
         }

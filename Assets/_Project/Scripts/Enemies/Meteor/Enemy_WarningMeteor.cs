@@ -31,6 +31,7 @@ public class Enemy_WarningMeteor : MonoBehaviour
 
         //if (ManagerPoolObj.Instance == null) yield break;
         GameObject meteor = Instantiate(meteorPreFab);//= ManagerPoolObj.Instance.GetObjFromPool("Meteor");
+        AudioManager.instance.PlayAsteroidSound();
         float multiplicatorZ = 0;
 
         if (Player.transform.TryGetComponent(out Rigidbody rigidbody)) multiplicatorZ += rigidbody.velocity.magnitude;

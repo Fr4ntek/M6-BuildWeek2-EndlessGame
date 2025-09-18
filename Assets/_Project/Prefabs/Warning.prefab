@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
-  meteorPreFab: {fileID: 2104609678173370851, guid: e9dad3cb509b7b34b95608588e796452,
+  meteorPreFab: {fileID: 5769375371698384013, guid: 368f6ccd5bcf85a418839bff2fb2ad6d,
     type: 3}
-  timeForMeteorToReachWarning: 4
+  timeForMeteorToReachWarning: 1.5
   meteorCurve:
     serializedVersion: 2
     m_Curve:
@@ -72,4 +72,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  positionSpawnMeteorFromPlayer: {x: 0, y: 10, z: 150}
+  positionSpawnMeteorFromPlayer: {x: 0, y: 6, z: 80}
+

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Enemy_MeteorAttack : MonoBehaviour
 {
-    public GameObject warningi;
+    public GameObject warning;
     [SerializeField] private Transform player;
     [SerializeField] private int[] lines;
 
@@ -26,8 +26,8 @@ public class Enemy_MeteorAttack : MonoBehaviour
 
             //if (ManagerPoolObj.Instance != null)
             //{
-                GameObject warning = Instantiate(warningi);//= ManagerPoolObj.Instance.GetObjFromPool("Warning");
-                if (warning.TryGetComponent(out Enemy_WarningMeteor enemy_Warning))
+                GameObject clone = Instantiate(warning);//= ManagerPoolObj.Instance.GetObjFromPool("Warning");
+                if (clone.TryGetComponent(out Enemy_WarningMeteor enemy_Warning))
                 {
                     enemy_Warning.Player = player;
                     enemy_Warning.WarningDistanceToPlayer = warningDistanceToPlayer;

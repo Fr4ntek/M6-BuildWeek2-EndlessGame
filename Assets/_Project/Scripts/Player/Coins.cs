@@ -12,7 +12,7 @@ public class Coins : MonoBehaviour
         {
             AudioManager.instance.PlayCoinSound();
             CoinManager.Instance.AddCoin();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
     void Update()

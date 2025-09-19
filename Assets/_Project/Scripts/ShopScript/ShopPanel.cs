@@ -3,7 +3,7 @@ using UnityEngine;
 public class ShopPanel : MonoBehaviour
 {
     // Riferimenti
-    [SerializeField] private Wallet wallet;
+    // Wallet is no longer required; ShopSlotUI reads coins from GameManager
     [SerializeField] private InventoryModel inventory;
     [SerializeField] private ItemDefinition[] items = new ItemDefinition[5];
 
@@ -14,9 +14,10 @@ public class ShopPanel : MonoBehaviour
         int n = Mathf.Min(slots.Length, items.Length);
 
         for (int i = 0; i < n; i++)
-            {
+        {
             if (items[i] == null) { Debug.LogWarning($"Item {i} non assegnato."); continue; }
-            slots[i].Bind(items[i], wallet, inventory);
+            // pass null for Wallet — ShopSlotUI will use GameManager for coins
+            slots[i].Bind(items[i], null, inventory);
         }
     }
 }

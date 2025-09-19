@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
 
     public SaveData saveData = new SaveData();
 
+    // Event fired when the coin count changes. Subscribers get the new coin total.
+    public System.Action<int> OnCoinsChanged;
+
     private string saveFilePath;
 
     private void Awake()
@@ -47,6 +50,26 @@ public class GameManager : MonoBehaviour
     public void AddCoinsFromRun(int coins)
     {
         saveData.totalCoins += coins;
+        OnCoinsChanged?.Invoke(saveData.totalCoins);
+    }
+
+    // Try to spend coins. Returns true if successful and raises the OnCoinsChanged event.
+    public bool TrySpend(int amount)
+    {
+        if (amount <= 0) return false;
+        if (saveData.totalCoins < amount) return false;
+
+        saveData.totalCoins -= amount;
+        OnCoinsChanged?.Invoke(saveData.totalCoins);
+        return true;
+    }
+
+    // Add coins (generic method) and notify listeners
+    public void AddCoins(int amount)
+    {
+        if (amount <= 0) return;
+        saveData.totalCoins += amount;
+        OnCoinsChanged?.Invoke(saveData.totalCoins);
     }
 
     
@@ -72,6 +95,8 @@ public class GameManager : MonoBehaviour
         {
             string json = File.ReadAllText(saveFilePath);
             saveData = JsonUtility.FromJson<SaveData>(json);
+            // notify listeners about loaded coin total
+            OnCoinsChanged?.Invoke(saveData.totalCoins);
         }
         else
         {

@@ -8,6 +8,7 @@ public class TopScoresUI : MonoBehaviour
 
     private void OnEnable() => Refresh();
 
+    // Aggiorna la UI con i dati salvati
     public void Refresh()
     {
         var data = TopScoresStorage.Load();

@@ -1548,6 +1548,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeaderBoard
       objectReference: {fileID: 0}
+    - target: {fileID: 4101852177545215000, guid: 9568d3879d6b7304ea95781b4de64f84,
+        type: 3}
+      propertyPath: m_Name
+      value: ScoreboardSlot (0)
+      objectReference: {fileID: 0}
     - target: {fileID: 4391983746143754550, guid: 9568d3879d6b7304ea95781b4de64f84,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1972,6 +1977,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4355229786320469233, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 756374739}
+    - target: {fileID: 4355229786320469233, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 756374739}
+    - target: {fileID: 4355229786320469233, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayButtonSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 4355229786320469233, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ShowMainMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 4457971256771303451, guid: e03f83787eede0745aae4156168ae270,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2113,7 +2138,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1238683154310754008, guid: e03f83787eede0745aae4156168ae270, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e03f83787eede0745aae4156168ae270, type: 3}

@@ -45,7 +45,7 @@ public class MenuManager : MonoBehaviour
         mainMenu.enabled = false;
         leaderBoard.enabled = true;
         shopMenu.enabled = false;
-        UpdateScoreUI();
+        //UpdateScoreUI();
     }
 
     public void UpdateShopUI()
@@ -53,21 +53,21 @@ public class MenuManager : MonoBehaviour
         coinText.text = GameManager.instance.saveData.totalCoins.ToString();
     }
 
-    public void UpdateScoreUI()
-    {
-        scoreText.text = "🏆 Leaderboard 🏆\n";
-        int rank = 1;
-        foreach (int score in GameManager.instance.saveData.leaderboardDistances)
-        {
-            scoreText.text += rank + ". " + score + " m\n";
-            rank++;
-        }
+    //public void UpdateScoreUI()
+    //{
+    //    scoreText.text = "🏆 Leaderboard 🏆\n";
+    //    int rank = 1;
+    //    foreach (int score in GameManager.instance.saveData.leaderboardDistances)
+    //    {
+    //        scoreText.text += rank + ". " + score + " m\n";
+    //        rank++;
+    //    }
 
-        if (GameManager.instance.saveData.leaderboardDistances.Count == 0)
-        {
-            scoreText.text += "Nessun punteggio ancora registrato!";
-        }
-    }
+    //    if (GameManager.instance.saveData.leaderboardDistances.Count == 0)
+    //    {
+    //        scoreText.text += "Nessun punteggio ancora registrato!";
+    //    }
+    //}
 
     public void NewGame()
     {

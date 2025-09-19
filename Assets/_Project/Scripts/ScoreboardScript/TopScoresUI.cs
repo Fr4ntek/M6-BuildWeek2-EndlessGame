@@ -8,30 +8,37 @@ public class TopScoresUI : MonoBehaviour
 
     private void OnEnable() => Refresh();
 
-    // Aggiorna la UI con i dati salvati
+    // Aggiorna la UI con i dati salvati in GameManager.instance.saveData
     public void Refresh()
     {
-        var data = TopScoresStorage.Load();
+        if (GameManager.instance == null)
+            return;
+
+        var distances = GameManager.instance.saveData.leaderboardDistances;
 
         for (int i = 0; i < rows.Length; i++)
         {
             if (!rows[i]) continue;
 
-            if (i < data.top.Count)
+            if (i < distances.Count)
             {
-                var e = data.top[i];
-                rows[i].text = string.Format(rowFormat, i + 1, e.score);
+                rows[i].text = string.Format(rowFormat, i + 1, distances[i]);
             }
             else
             {
-                rows[i].text = $"#{i + 1}  —";
+                rows[i].text = string.Format(rowFormat, i + 1, "â€”");
             }
         }
     }
 
+    // Registra un nuovo punteggio usando GameManager e salva su file
     public void RegisterScore(int score)
     {
-        TopScoresStorage.AddScore(score);
+        if (GameManager.instance == null)
+            return;
+
+        GameManager.instance.SaveRunDistance(score);
+        GameManager.instance.SaveDataToFile();
         Refresh();
     }
 }

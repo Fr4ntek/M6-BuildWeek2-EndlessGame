@@ -6,7 +6,7 @@ using System.Collections;
 public class MoneyCounterUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI label; // assegna il TMP_Text del contatore
-    [SerializeField] private Wallet wallet; // se lasci vuoto, lo cerca (meglio popolare)
+    // Wallet removed: MoneyCounterUI now reads coins from GameManager
     [SerializeField] private bool smooth = true;    // conteggio animato o istantaneo
     [SerializeField, Range(0.05f, 1.5f)] private float animDuration = 0.25f;    // durata animazione
 
@@ -18,19 +18,18 @@ public class MoneyCounterUI : MonoBehaviour
     {
         // riferimenti
         if (label == null) label = GetComponent<TextMeshProUGUI>();
-        if (wallet == null) wallet = FindObjectOfType<Wallet>();
+        // no wallet lookup required
     }
 
     // Eventi
     private void OnEnable()
     {
         // iscrizione eventi
-        if (wallet != null)
-            wallet.OnCoinsChanged += HandleCoinsChanged;
-
-        // sync iniziale
-        if (wallet != null)
-            SetValueImmediate(wallet.Coins);
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.OnCoinsChanged += HandleCoinsChanged;
+            SetValueImmediate(GameManager.instance.saveData.totalCoins);
+        }
         else
             SetValueImmediate(0);
     }
@@ -38,8 +37,8 @@ public class MoneyCounterUI : MonoBehaviour
     // Pulizia eventi
     private void OnDisable()
     {
-        if (wallet != null)
-            wallet.OnCoinsChanged -= HandleCoinsChanged;
+        if (GameManager.instance != null)
+            GameManager.instance.OnCoinsChanged -= HandleCoinsChanged;
     }
 
     // Callback quando cambia il numero di monete

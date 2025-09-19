@@ -14,13 +14,11 @@ public class ShopSlotUI : MonoBehaviour
 
     [Header("Config (runtime)")]
     public ItemDefinition itemDef;
-    private Wallet wallet;
     private InventoryModel inventory;
 
     public void Bind(ItemDefinition itm, Wallet w, InventoryModel inv)
     {
         itemDef = itm;
-        wallet = w;
         inventory = inv;
 
         // UI statiche
@@ -39,15 +37,15 @@ public class ShopSlotUI : MonoBehaviour
         RefreshCount(inventory.GetCount(itemDef.id));
         RefreshAffordability();
 
-        // eventi
-        if (wallet != null) wallet.OnCoinsChanged += _ => RefreshAffordability();
+        // eventi: subscribe to GameManager coin changes and inventory changes
+        if (GameManager.instance != null) GameManager.instance.OnCoinsChanged += _ => RefreshAffordability();
         if (inventory != null) inventory.OnItemCountChanged += OnAnyItemCountChanged;
     }
 
     // Pulizia eventi
     private void OnDestroy()
     {
-        if (wallet != null) wallet.OnCoinsChanged -= _ => RefreshAffordability();
+        if (GameManager.instance != null) GameManager.instance.OnCoinsChanged -= _ => RefreshAffordability();
         if (inventory != null) inventory.OnItemCountChanged -= OnAnyItemCountChanged;
     }
 
@@ -67,8 +65,10 @@ public class ShopSlotUI : MonoBehaviour
     private void RefreshAffordability()
     {
         // Controlla se puoi permetterti l'item
-        if (wallet == null || itemDef == null || shopButton == null) return;
-        bool can = wallet.Coins >= itemDef.price;
+        if (itemDef == null || shopButton == null) return;
+
+        int coins = GameManager.instance != null ? GameManager.instance.saveData.totalCoins : 0;
+        bool can = coins >= itemDef.price;
         shopButton.interactable = can;
 
         // cambia colore quando non puoi comprare
@@ -81,8 +81,8 @@ public class ShopSlotUI : MonoBehaviour
     // Logica di acquisto
     private void Buy()
     {
-        if (wallet == null || inventory == null || itemDef == null) return;
-        if (!wallet.TrySpend(itemDef.price)) return;
+        if (GameManager.instance == null || inventory == null || itemDef == null) return;
+        if (!GameManager.instance.TrySpend(itemDef.price)) return;
 
         inventory.Add(itemDef.id, 1);
         // feedback opzionale: piccola animazione/flash, suono, ecc.

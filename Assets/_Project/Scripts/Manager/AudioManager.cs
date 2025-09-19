@@ -64,6 +64,7 @@ public class AudioManager : MonoBehaviour
             _maxAudio.time = 0f;
             _sfxAudio.time = 0f;
             _maxAudio.clip = _gameoverAudio;
+            _maxAudio.volume = 0.5f;
             _maxAudio.loop = true;
             _maxAudio.Play();
         }

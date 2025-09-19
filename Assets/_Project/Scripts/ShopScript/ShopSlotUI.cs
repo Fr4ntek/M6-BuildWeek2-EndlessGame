@@ -67,7 +67,7 @@ public class ShopSlotUI : MonoBehaviour
         // Controlla se puoi permetterti l'item
         if (itemDef == null || shopButton == null) return;
 
-        int coins = GameManager.instance != null ? GameManager.instance.saveData.totalCoins : 0;
+        int coins = GameManager.instance != null ? GameManager.instance.SaveData.totalCoins : 0;
         bool can = coins >= itemDef.price;
         shopButton.interactable = can;
 

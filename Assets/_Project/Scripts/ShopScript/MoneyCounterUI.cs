@@ -28,7 +28,7 @@ public class MoneyCounterUI : MonoBehaviour
         if (GameManager.instance != null)
         {
             GameManager.instance.OnCoinsChanged += HandleCoinsChanged;
-            SetValueImmediate(GameManager.instance.saveData.totalCoins);
+            SetValueImmediate(GameManager.instance.SaveData.totalCoins);
         }
         else
             SetValueImmediate(0);

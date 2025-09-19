@@ -14,7 +14,7 @@ public class TopScoresUI : MonoBehaviour
         if (GameManager.instance == null)
             return;
 
-        var distances = GameManager.instance.saveData.leaderboardDistances;
+        var distances = GameManager.instance.SaveData.leaderboardDistances;
 
         for (int i = 0; i < rows.Length; i++)
         {

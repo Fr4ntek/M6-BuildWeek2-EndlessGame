@@ -46,5 +46,6 @@ public class GameOverManager : MonoBehaviour
     public void ExitGame()
     {
       SceneManager.LoadScene(0);
+      AudioManager.instance.StopSound();
     }
 }

@@ -68,5 +68,10 @@ public class AudioManager : MonoBehaviour
             _maxAudio.Play();
         }
     }
+
+    public void StopSound()
+    {
+        _maxAudio.Stop();
+    }
 }
 

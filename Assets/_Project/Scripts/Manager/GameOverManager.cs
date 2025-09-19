@@ -31,7 +31,7 @@ public class GameOverManager : MonoBehaviour
         {
             GameManager.instance.EndRun();
             gameOverUI.SetActive(true);
-            AudioManager.instance.StopSound();
+            AudioManager.instance.PlayGameOverSound();
             Time.timeScale = 0f;
         }
     }

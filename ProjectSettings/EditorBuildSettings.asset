@@ -5,15 +5,21 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Start.unity
     guid: 66b8e0d49d006dd4cb32d8b0fa444728
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main.unity
     guid: 678d462d33ebdd7419400a9476bf6759
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Shop.unity
     guid: c81bf86fb95a26446ae42f499fcbc766
+  - enabled: 1
+    path: "Assets/Scenes/Men\xF9 Gabriele.unity"
+    guid: 8b6732d58f24ec14cb9b07971ce4e5fa
+  - enabled: 1
+    path: Assets/Scenes/FRA_MERGED.unity
+    guid: c83d00b2d7df8cd4a8bbe68f6e32761d
   m_configObjects:
     AddressableAssetSettings: {fileID: 0}
     com.unity.addressableassets: {fileID: 11400000, guid: b326c184dbebf6b4e8e5be689c39d470,

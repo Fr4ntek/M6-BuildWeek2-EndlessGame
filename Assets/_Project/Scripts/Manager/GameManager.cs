@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
        
         CoinManager.Instance._coinCount = 0;
         DistanceCounter.instance.ResetDistance();
+        LifeController.instance.baseLife = 1;
+                            
 
         SaveDataToFile();
     }
@@ -81,7 +83,7 @@ public class GameManager : MonoBehaviour
         SaveData.leaderboardDistances.Add(distance);
         SaveData.leaderboardDistances.Sort((a, b) => b.CompareTo(a));
 
-        if (SaveData.leaderboardDistances.Count > 10) 
+        if (SaveData.leaderboardDistances.Count > 5) 
             SaveData.leaderboardDistances.RemoveAt(SaveData.leaderboardDistances.Count - 1);
     }
 

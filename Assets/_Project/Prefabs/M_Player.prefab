@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8310608428600224436}
   - component: {fileID: 1129650891593877063}
+  - component: {fileID: 258254870152403852}
   - component: {fileID: 7752236172669677237}
   - component: {fileID: 3728020324719469749}
   - component: {fileID: 166586968392801869}
@@ -54,9 +55,10 @@ MonoBehaviour:
   velocitySpeedIncrease: 0.15
   swapDistance: 2.5
   velocitySwap: 6
-  jumpHeight: 2
-  jumpDuration: 1
-  jumpCurve:
+  jumpHeight: 2.25
+  jumpDurationNormal: 1.25
+  jumpDurationLowGravity: 3.25
+  jumpCurveNormal:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -69,22 +71,55 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.3
+      time: 0.25
       value: 1
-      inSlope: 1.4199669
-      outSlope: 1.4199669
+      inSlope: 1.7141683
+      outSlope: 1.7141683
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.17179443
+      outWeight: 0.0547148
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -0.99046075
-      outSlope: -0.99046075
+      inSlope: -1.0615275
+      outSlope: -1.0615275
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.09354736
+      inWeight: 0.045013588
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  jumpCurveLowGravity:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.1
+      value: 1
+      inSlope: 1.0552564
+      outSlope: 1.0552564
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.053162586
+    - serializedVersion: 3
+      time: 1.0011642
+      value: -0.0024108887
+      inSlope: -1.8898001
+      outSlope: -1.8898001
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.02842015
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -92,6 +127,19 @@ MonoBehaviour:
   slideHeight: 0.3
   slidePositionY: 0.3
   slideDuration: 1.15
+--- !u!114 &258254870152403852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3348121741888161629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d10def1afc8334c9af9ba3bc6a2764, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseLife: 1
 --- !u!114 &7752236172669677237
 MonoBehaviour:
   m_ObjectHideFlags: 0

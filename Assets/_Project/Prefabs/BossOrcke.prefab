@@ -147,11 +147,11 @@ GameObject:
   - component: {fileID: 3244547166008097363}
   m_Layer: 0
   m_Name: BossOrcke
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5673943542525711284
 Transform:
   m_ObjectHideFlags: 0

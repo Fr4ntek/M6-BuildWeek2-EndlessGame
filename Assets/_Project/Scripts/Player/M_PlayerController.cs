@@ -18,8 +18,10 @@ public class M_PlayerController : MonoBehaviour
 
     [Header("Setting Jump")]
     [SerializeField] private float jumpHeight = 2;
-    [SerializeField] private float jumpDuration = 1;
-    [SerializeField] private AnimationCurve jumpCurve;
+    [SerializeField] private float jumpDurationNormal = 1;
+    [SerializeField] private float jumpDurationLowGravity = 1;
+    [SerializeField] private AnimationCurve jumpCurveNormal;
+    [SerializeField] private AnimationCurve jumpCurveLowGravity;
 
     [Header("Setting Slide")]
     [SerializeField] private float slideHeight = 0.3f;
@@ -45,6 +47,10 @@ public class M_PlayerController : MonoBehaviour
     private bool isJumping;
     private bool isSliding;
 
+    private float jumpDuration;
+    private bool hasLowGravity;
+    private AnimationCurve jumpCurve;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -53,6 +59,10 @@ public class M_PlayerController : MonoBehaviour
         originalY = transform.position.y;
         originHeight = capsuleCollider.height;
         originPositionY = capsuleCollider.center.y;
+
+        hasLowGravity = true;
+        jumpDuration = hasLowGravity? jumpDurationLowGravity : jumpDurationNormal;
+        jumpCurve = hasLowGravity? jumpCurveLowGravity : jumpCurveNormal;
     }
 
     private void Update()

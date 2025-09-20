@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 775698a3233aa8a4b81da136fbcc6927, type: 3}
-  m_Name: PH
+  m_Name: GA
   m_EditorClassIdentifier: 
-  id: PH
-  itemName: Potion Healt
-  description: Pozione Vita
-  icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  price: 20
+  id: GA
+  itemName: "Assenza di gravit\xE0"
+  description: "Assenza di gravit\xE0"
+  icon: {fileID: 21300000, guid: 64e36133143aa9d45a9d3cdd77105ca0, type: 3}
+  price: 10

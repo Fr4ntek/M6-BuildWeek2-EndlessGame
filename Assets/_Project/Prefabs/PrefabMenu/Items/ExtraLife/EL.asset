@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 775698a3233aa8a4b81da136fbcc6927, type: 3}
-  m_Name: DS
+  m_Name: EL
   m_EditorClassIdentifier: 
-  id: DJ
-  itemName: Doppio Salto
-  description: Doppio Salto
-  icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  price: 10
+  id: EL
+  itemName: Vita extra
+  description: Vita extra
+  icon: {fileID: 21300000, guid: 5f16c05d6b24a4249a42e8338ad9034a, type: 3}
+  price: 20

@@ -16,4 +16,4 @@ MonoBehaviour:
   itemName: "Assenza di gravit\xE0"
   description: "Assenza di gravit\xE0"
   icon: {fileID: 21300000, guid: 64e36133143aa9d45a9d3cdd77105ca0, type: 3}
-  price: 10
+  price: 1

@@ -15,6 +15,9 @@ public class ShopSlotUI : MonoBehaviour
     [Header("Config (runtime)")]
     public ItemDefinition itemDef;
     private InventoryModel inventory;
+    [Header("Purchase Rules")]
+    [SerializeField] private bool singlePurchaseOnly = false; // per gestire se limitare acquisto a 1
+    private System.Action<int> coinsChangedHandler;
 
     public void Bind(ItemDefinition itm, Wallet w, InventoryModel inv)
     {
@@ -34,18 +37,24 @@ public class ShopSlotUI : MonoBehaviour
         }
 
         // sync iniziale
-        RefreshCount(inventory.GetCount(itemDef.id));
-        RefreshAffordability();
+    RefreshCount(inventory.GetCount(itemDef.id));
+    RefreshAffordability();
 
         // eventi: subscribe to GameManager coin changes and inventory changes
-        if (GameManager.instance != null) GameManager.instance.OnCoinsChanged += _ => RefreshAffordability();
+        // unsubscribe previous handler if any (in case of re-bind)
+        if (coinsChangedHandler != null && GameManager.instance != null)
+            GameManager.instance.OnCoinsChanged -= coinsChangedHandler;
+
+        coinsChangedHandler = _ => RefreshAffordability();
+        if (GameManager.instance != null) GameManager.instance.OnCoinsChanged += coinsChangedHandler;
         if (inventory != null) inventory.OnItemCountChanged += OnAnyItemCountChanged;
     }
 
     // Pulizia eventi
     private void OnDestroy()
     {
-        if (GameManager.instance != null) GameManager.instance.OnCoinsChanged -= _ => RefreshAffordability();
+        if (coinsChangedHandler != null && GameManager.instance != null)
+            GameManager.instance.OnCoinsChanged -= coinsChangedHandler;
         if (inventory != null) inventory.OnItemCountChanged -= OnAnyItemCountChanged;
     }
 
@@ -67,8 +76,15 @@ public class ShopSlotUI : MonoBehaviour
         // Controlla se puoi permetterti l'item
         if (itemDef == null || shopButton == null) return;
 
-        int coins = GameManager.instance != null ? GameManager.instance.SaveData.totalCoins : 0;
+    int coins = GameManager.instance != null ? GameManager.instance.SaveData.totalCoins : 0;
         bool can = coins >= itemDef.price;
+
+        // If singlePurchaseOnly is enabled, do not allow buying if already have at least one
+        if (singlePurchaseOnly && inventory != null)
+        {
+            int current = inventory.GetCount(itemDef.id);
+            if (current >= 1) can = false;
+        }
         shopButton.interactable = can;
 
         // cambia colore quando non puoi comprare
@@ -82,6 +98,13 @@ public class ShopSlotUI : MonoBehaviour
     private void Buy()
     {
         if (GameManager.instance == null || inventory == null || itemDef == null) return;
+
+        // Respect single-purchase rule
+        if (singlePurchaseOnly && inventory.GetCount(itemDef.id) >= 1)
+        {
+            return;
+        }
+
         if (!GameManager.instance.TrySpend(itemDef.price)) return;
 
         inventory.Add(itemDef.id, 1);

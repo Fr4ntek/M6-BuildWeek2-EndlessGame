@@ -347,7 +347,6 @@ GameObject:
   - component: {fileID: 756374740}
   - component: {fileID: 756374739}
   - component: {fileID: 756374741}
-  - component: {fileID: 756374742}
   - component: {fileID: 756374743}
   m_Layer: 0
   m_Name: Menu Manager
@@ -486,19 +485,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &756374742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756374738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88511911642a47849a1c8f0e7d89c9b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coins: 100
 --- !u!114 &756374743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1721,7 +1707,7 @@ PrefabInstance:
         type: 3}
       propertyPath: wallet
       value: 
-      objectReference: {fileID: 756374742}
+      objectReference: {fileID: 0}
     - target: {fileID: 4729198047986301942, guid: e03f83787eede0745aae4156168ae270,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1988,6 +1974,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 12a5f42036cd82b47a9d327b25aa03c7,
         type: 2}
+    - target: {fileID: 8204042893031650368, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: singlePurchaseOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8667715112898689666, guid: e03f83787eede0745aae4156168ae270,
         type: 3}
       propertyPath: itemDef
@@ -2018,7 +2009,7 @@ PrefabInstance:
         type: 3}
       propertyPath: wallet
       value: 
-      objectReference: {fileID: 756374742}
+      objectReference: {fileID: 0}
     - target: {fileID: 8698977763420961220, guid: e03f83787eede0745aae4156168ae270,
         type: 3}
       propertyPath: inventory

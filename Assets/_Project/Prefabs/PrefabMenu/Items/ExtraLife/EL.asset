@@ -16,4 +16,4 @@ MonoBehaviour:
   itemName: Vita extra
   description: Vita extra
   icon: {fileID: 21300000, guid: 5f16c05d6b24a4249a42e8338ad9034a, type: 3}
-  price: 20
+  price: 1

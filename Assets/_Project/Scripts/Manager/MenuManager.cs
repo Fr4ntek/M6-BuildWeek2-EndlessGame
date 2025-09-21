@@ -41,7 +41,7 @@ public class MenuManager : MonoBehaviour
         mainMenu.enabled = false;
         leaderBoard.enabled = false;
         shopMenu.enabled = true;
-        //UpdateShopUI();
+        UpdateShopUI();
     }
 
     // Mostra il canvas della classifica
@@ -50,7 +50,7 @@ public class MenuManager : MonoBehaviour
         mainMenu.enabled = false;
         leaderBoard.enabled = true;
         shopMenu.enabled = false;
-        //UpdateScoreUI();
+        UpdateScoreUI();
     }
 
     // Aggiorna il testo delle monete nello shop

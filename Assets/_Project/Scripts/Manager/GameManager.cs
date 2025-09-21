@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEditor.Rendering;
 
 
 public class GameManager : MonoBehaviour
@@ -88,6 +89,7 @@ public class GameManager : MonoBehaviour
     
     public void SaveDataToFile()
     {
+        Debug.LogWarningFormat("Saving data to {0}", saveFilePath);
         string json = JsonUtility.ToJson(SaveData, true);
         File.WriteAllText(saveFilePath, json);
     }

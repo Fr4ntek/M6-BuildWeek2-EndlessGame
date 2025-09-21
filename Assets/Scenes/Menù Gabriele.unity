@@ -370,8 +370,9 @@ MonoBehaviour:
   mainMenu: {fileID: 550726887}
   leaderBoard: {fileID: 361955645}
   shopMenu: {fileID: 1228583077}
-  maxaudio: {fileID: 756374741}
+  maxAudio: {fileID: 756374741}
   _buttonSound: {fileID: 8300000, guid: 682a4127e45555c4bad2c29a3ee030ab, type: 3}
+  _cashAudio: {fileID: 8300000, guid: 92a6c24caf1cea14fb5d3c8417ffb568, type: 3}
   coinText: {fileID: 0}
   scoreText: {fileID: 0}
 --- !u!4 &756374740
@@ -1442,6 +1443,41 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 400
       objectReference: {fileID: 0}
+    - target: {fileID: 1175210766772548794, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1175210766772548794, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1175210766772548794, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 756374739}
+    - target: {fileID: 1175210766772548794, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1175210766772548794, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayCashSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 1175210766772548794, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1175210766772548794, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1240727492094625761, guid: e03f83787eede0745aae4156168ae270,
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
@@ -1793,6 +1829,66 @@ PrefabInstance:
       propertyPath: m_Name
       value: Number
       objectReference: {fileID: 0}
+    - target: {fileID: 6449421097150396656, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449421097150396656, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449421097150396656, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 756374739}
+    - target: {fileID: 6449421097150396656, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449421097150396656, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayCashSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449421097150396656, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449421097150396656, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519370806520486620, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519370806520486620, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 756374739}
+    - target: {fileID: 6519370806520486620, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowShop
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519370806520486620, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519370806520486620, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6596632554006478031, guid: e03f83787eede0745aae4156168ae270,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1862,6 +1958,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -423
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761984886348769107, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761984886348769107, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761984886348769107, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 756374739}
+    - target: {fileID: 6761984886348769107, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761984886348769107, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayCashSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761984886348769107, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761984886348769107, guid: e03f83787eede0745aae4156168ae270,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7196396907684880110, guid: e03f83787eede0745aae4156168ae270,
         type: 3}

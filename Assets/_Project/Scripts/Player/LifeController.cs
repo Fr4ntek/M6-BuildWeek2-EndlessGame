@@ -21,7 +21,7 @@ public class LifeController : MonoBehaviour
 
     void Start()
     {
-        currentLife = baseLife;
+        currentLife = GameManager.instance.SaveData.extraLife + baseLife;
     }
 
     public void LoseLife()

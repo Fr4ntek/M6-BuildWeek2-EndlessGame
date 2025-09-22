@@ -18,6 +18,7 @@ public class ShopSlotUI : MonoBehaviour
     [Header("Purchase Rules")]
     [SerializeField] private bool singlePurchaseOnly = false; // per gestire se limitare acquisto a 1
     private System.Action<int> coinsChangedHandler;
+    public SaveData SaveData { get; private set; }
 
     public void Bind(ItemDefinition itm, Wallet w, InventoryModel inv)
     {
@@ -35,6 +36,9 @@ public class ShopSlotUI : MonoBehaviour
             shopButton.onClick.RemoveAllListeners();
             shopButton.onClick.AddListener(Buy);
         }
+
+        // Initialize SaveData reference from GameManager so Buy won't hit null
+        SaveData = GameManager.instance != null ? GameManager.instance.SaveData : null;
 
         // sync iniziale
         RefreshCount(inventory.GetCount(itemDef.id));
@@ -70,16 +74,16 @@ public class ShopSlotUI : MonoBehaviour
         if (currentInventory) currentInventory.text = count.ToString();
     }
 
-    // Aggiorna lo stato del bottone in base alla disponibilit� economica
+    // Aggiorna lo stato del bottone in base alla disponibilità economica
     private void RefreshAffordability()
     {
         // Controlla se puoi permetterti l'item
         if (itemDef == null || shopButton == null) return;
 
-    int coins = GameManager.instance != null ? GameManager.instance.SaveData.totalCoins : 0;
+        int coins = GameManager.instance != null ? GameManager.instance.SaveData.totalCoins : 0;
         bool can = coins >= itemDef.price;
 
-        // If singlePurchaseOnly is enabled, do not allow buying if already have at least one
+        // se singlePurchaseOnly, disabilita se già posseduto
         if (singlePurchaseOnly && inventory != null)
         {
             int current = inventory.GetCount(itemDef.id);
@@ -88,10 +92,8 @@ public class ShopSlotUI : MonoBehaviour
         shopButton.interactable = can;
 
         // cambia colore quando non puoi comprare
-        /*
-            if (imgShop != null)
-                imgShop.color = can ? Color.white : new Color(1, 1, 1, 0.4f);
-        */
+        if (imgShop != null)
+            imgShop.color = can ? Color.white : new Color(1, 1, 1, 0.4f);
     }
 
     // Logica di acquisto
@@ -105,10 +107,31 @@ public class ShopSlotUI : MonoBehaviour
             return;
         }
 
+        // Prova a spendere i soldi, esci se non ci riesci
         if (!GameManager.instance.TrySpend(itemDef.price)) return;
 
-        inventory.Add(itemDef.id, 1);
+        // Safely get SaveData (use local SaveData initialized in Bind or fallback to GameManager)
+        var sd = SaveData ?? (GameManager.instance != null ? GameManager.instance.SaveData : null);
+        if (sd != null)
+        {
+            // Aggiunge l'item in base all'id
+            if (itemDef.id == "EL")
+                sd.extraLife++;
+            else if (itemDef.id == "GA")
+                sd.perdiPeso = true;
+            else if (itemDef.id == "TI")
+                sd.temporaryInvincibility++;
+        }
+
+        // Aggiorna il modello di inventario così che gli ascoltatori ricevano l'evento
+        if (inventory != null)
+        {
+            inventory.Add(itemDef.id, 1);
+            Debug.Log($"Added item {itemDef.id} to inventory via ShopSlotUI");
+        }
+
         // feedback opzionale: piccola animazione/flash, suono, ecc.
         RefreshAffordability();
+
     }
 }

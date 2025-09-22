@@ -44,10 +44,14 @@ public class MoneyCounterUI : MonoBehaviour
     // Callback quando cambia il numero di monete
     private void HandleCoinsChanged(int newValue)
     {
-        // aggiorna il contatore
-        if (!smooth) { SetValueImmediate(newValue); return; }
-        if (animCo != null) StopCoroutine(animCo);
-        animCo = StartCoroutine(AnimateTo(newValue));
+        // aggiorna subito il contatore per il valore corrente
+        SetValueImmediate(newValue);
+        // se animazione abilitata, esegui animazione dal valore precedente
+        if (smooth)
+        {
+            if (animCo != null) StopCoroutine(animCo);
+            animCo = StartCoroutine(AnimateTo(newValue));
+        }
     }
 
     // Aggiorna il contatore senza animazione

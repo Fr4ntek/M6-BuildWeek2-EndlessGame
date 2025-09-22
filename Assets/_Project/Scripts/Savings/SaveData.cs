@@ -9,5 +9,5 @@ public class SaveData
     public List<int> leaderboardDistances = new List<int>();
     public int extraLife;
     public bool perdiPeso;
-    public int temporaryInvicibility;
+    public int temporaryInvincibility;
 }

@@ -9,8 +9,9 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private Canvas mainMenu;
     [SerializeField] private Canvas leaderBoard;
     [SerializeField] private Canvas shopMenu;
-    [SerializeField] private AudioSource maxaudio;
+    [SerializeField] private AudioSource maxAudio;
     [SerializeField] private AudioClip _buttonSound;
+    [SerializeField] private AudioClip _cashAudio;
     
     public TextMeshProUGUI coinText;
     public TextMeshProUGUI scoreText;
@@ -24,7 +25,12 @@ public class MenuManager : MonoBehaviour
     // Produce il suono al click del bottone
     public void PlayButtonSound()
     {
-        maxaudio.PlayOneShot(_buttonSound);
+        maxAudio.PlayOneShot(_buttonSound);
+    }
+
+    public void PlayCashSound()
+    {
+        maxAudio?.PlayOneShot(_cashAudio);
     }
 
     // Mostra il canvas del menu principale
@@ -41,7 +47,7 @@ public class MenuManager : MonoBehaviour
         mainMenu.enabled = false;
         leaderBoard.enabled = false;
         shopMenu.enabled = true;
-        //UpdateShopUI();
+        UpdateShopUI();
     }
 
     // Mostra il canvas della classifica
@@ -50,32 +56,32 @@ public class MenuManager : MonoBehaviour
         mainMenu.enabled = false;
         leaderBoard.enabled = true;
         shopMenu.enabled = false;
-        //UpdateScoreUI();
+        UpdateScoreUI();
     }
 
     // Aggiorna il testo delle monete nello shop
     // non più usato, ora lo fa lo script Wallet, ShopPanel e ShopSlotUI
-    public void UpdateShopUI()
-    {
-        coinText.text = GameManager.instance.SaveData.totalCoins.ToString();
-    }
+    //public void UpdateShopUI()
+    //{
+    //    coinText.text = GameManager.instance.SaveData.totalCoins.ToString();
+    //}
 
     // Aggiorna il testo della classifica
-    public void UpdateScoreUI()
-    {
-        scoreText.text = "🏆 Leaderboard 🏆\n";
-        int rank = 1;
-        foreach (int score in GameManager.instance.SaveData.leaderboardDistances)
-        {
-            scoreText.text += rank + ". " + score + " m\n";
-            rank++;
-        }
+    //public void UpdateScoreUI()
+    //{
+    //    scoreText.text = "🏆 Leaderboard 🏆\n";
+    //    int rank = 1;
+    //    foreach (int score in GameManager.instance.SaveData.leaderboardDistances)
+    //    {
+    //        scoreText.text += rank + ". " + score + " m\n";
+    //        rank++;
+    //    }
 
-        if (GameManager.instance.SaveData.leaderboardDistances.Count == 0)
-        {
-            scoreText.text += "Nessun punteggio ancora registrato!";
-        }
-    }
+    //    if (GameManager.instance.SaveData.leaderboardDistances.Count == 0)
+    //    {
+    //        scoreText.text += "Nessun punteggio ancora registrato!";
+    //    }
+    //}
 
     // Carica la scena del gioco (indice 1)
     public void NewGame()

@@ -7,4 +7,7 @@ public class SaveData
     // Dati da salvare
     public int totalCoins;
     public List<int> leaderboardDistances = new List<int>();
+    public int extraLife;
+    public bool perdiPeso;
+    public int temporaryInvicibility;
 }

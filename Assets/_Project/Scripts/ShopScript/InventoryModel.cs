@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InventoryModel : MonoBehaviour
 {
-    // Dizionario che mappa itemId a quantità
+    // Dizionario che mappa itemId a quantitï¿½
     private readonly Dictionary<string, int> _counts = new();
     public event Action<string, int> OnItemCountChanged; // (itemId, newCount)
 

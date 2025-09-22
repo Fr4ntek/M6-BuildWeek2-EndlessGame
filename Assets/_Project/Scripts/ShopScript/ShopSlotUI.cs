@@ -37,8 +37,8 @@ public class ShopSlotUI : MonoBehaviour
         }
 
         // sync iniziale
-    RefreshCount(inventory.GetCount(itemDef.id));
-    RefreshAffordability();
+        RefreshCount(inventory.GetCount(itemDef.id));
+        RefreshAffordability();
 
         // eventi: subscribe to GameManager coin changes and inventory changes
         // unsubscribe previous handler if any (in case of re-bind)

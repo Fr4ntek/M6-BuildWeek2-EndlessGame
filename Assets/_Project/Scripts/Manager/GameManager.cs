@@ -37,18 +37,15 @@ public class GameManager : MonoBehaviour
     {
        
         AddCoinsFromRun(CoinManager.Instance._coinCount);
-
-        
         int runDistance = DistanceCounter.instance.GetDistance();
         SaveRunDistance(runDistance);
+        SaveData.perdiPeso = false;
+        SaveData.extraLife = 0;
+        SaveDataToFile();
 
-       
         CoinManager.Instance._coinCount = 0;
         DistanceCounter.instance.ResetDistance();
         LifeController.instance.baseLife = 1;
-                            
-
-        SaveDataToFile();
     }
 
     

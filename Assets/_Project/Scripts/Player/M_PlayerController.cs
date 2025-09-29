@@ -60,7 +60,7 @@ public class M_PlayerController : MonoBehaviour
         originHeight = capsuleCollider.height;
         originPositionY = capsuleCollider.center.y;
 
-        hasLowGravity = true;
+        hasLowGravity = GameManager.instance.SaveData.perdiPeso;
         jumpDuration = hasLowGravity? jumpDurationLowGravity : jumpDurationNormal;
         jumpCurve = hasLowGravity? jumpCurveLowGravity : jumpCurveNormal;
     }

@@ -21,13 +21,20 @@ public class LifeController : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("BaseLife:" + baseLife);
+        Debug.Log("Potenziamenti attivi:");
+        Debug.Log("--Extra life: " + GameManager.instance.SaveData.extraLife);
+        Debug.Log("--PerdiPeso:" + GameManager.instance.SaveData.perdiPeso);
+        Debug.Log("--Invincibilità:"+ GameManager.instance.SaveData.temporaryInvincibility);
+      
         currentLife = GameManager.instance.SaveData.extraLife + baseLife;
+        Debug.Log("currentLife: " + currentLife);
     }
 
     public void LoseLife()
     {
         currentLife--;
-        if (currentLife > 1)
+        if (currentLife >= 1)
         {
             RespawnPlayer();
         }
@@ -43,7 +50,7 @@ public class LifeController : MonoBehaviour
     }
     void RespawnPlayer()
     {
-       transform.position = transform.position - new Vector3(0, 0, -10);
+       transform.position = transform.position - new Vector3(0, 0, 10);
 
         Rigidbody rb = GetComponent<Rigidbody>();
         if (rb != null)

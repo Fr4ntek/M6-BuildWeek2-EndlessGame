@@ -120,7 +120,7 @@ public class ShopSlotUI : MonoBehaviour
             else if (itemDef.id == "GA")
                 sd.perdiPeso = true;
             else if (itemDef.id == "TI")
-                sd.temporaryInvincibility++;
+                sd.temporaryInvincibility = true;
         }
 
         // Aggiorna il modello di inventario così che gli ascoltatori ricevano l'evento

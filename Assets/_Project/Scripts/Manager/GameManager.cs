@@ -35,17 +35,18 @@ public class GameManager : MonoBehaviour
 
     public void EndRun()
     {
-       
         AddCoinsFromRun(CoinManager.Instance._coinCount);
         int runDistance = DistanceCounter.instance.GetDistance();
         SaveRunDistance(runDistance);
-        SaveData.perdiPeso = false;
         SaveData.extraLife = 0;
+        SaveData.perdiPeso = false;
+        // se non l ho usato in partita lascio a true l invincibilità
+        SaveData.temporaryInvincibility = LifeController.instance.HasInvinciblePU;
         SaveDataToFile();
 
         CoinManager.Instance._coinCount = 0;
         DistanceCounter.instance.ResetDistance();
-        LifeController.instance.baseLife = 1;
+        LifeController.instance._baseLife = 1;
     }
 
     

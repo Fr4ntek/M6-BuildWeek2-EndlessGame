@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class LifeController : MonoBehaviour
 {
-    public int baseLife = 1;
-    private int currentLife;
+    public int _baseLife = 1;
+    private int _currentLife;
+    public bool HasInvinciblePU { get;  private set; }
     
-
     public static LifeController instance;
 
     void Awake()
@@ -21,20 +22,21 @@ public class LifeController : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("BaseLife:" + baseLife);
+        _currentLife = GameManager.instance.SaveData.extraLife + _baseLife;
+        HasInvinciblePU = GameManager.instance.SaveData.temporaryInvincibility;
+
+        Debug.Log("BaseLife:" + _baseLife);
         Debug.Log("Potenziamenti attivi:");
-        Debug.Log("--Extra life: " + GameManager.instance.SaveData.extraLife);
-        Debug.Log("--PerdiPeso:" + GameManager.instance.SaveData.perdiPeso);
-        Debug.Log("--Invincibilità:"+ GameManager.instance.SaveData.temporaryInvincibility);
-      
-        currentLife = GameManager.instance.SaveData.extraLife + baseLife;
-        Debug.Log("currentLife: " + currentLife);
+        Debug.Log("     --Extra life: " + GameManager.instance.SaveData.extraLife);
+        Debug.Log("     --PerdiPeso: " + GameManager.instance.SaveData.perdiPeso);
+        Debug.Log("     --Invincibilità: "+ HasInvinciblePU);
+        Debug.Log("CurrentLife: " + _currentLife);
     }
 
     public void LoseLife()
     {
-        currentLife--;
-        if (currentLife >= 1)
+        _currentLife--;
+        if (_currentLife >= 1)
         {
             RespawnPlayer();
         }
@@ -46,7 +48,7 @@ public class LifeController : MonoBehaviour
 
     public void ResetLife()
     {
-        currentLife = baseLife;
+        _currentLife = _baseLife;
     }
     void RespawnPlayer()
     {
@@ -59,9 +61,14 @@ public class LifeController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") || other.CompareTag("Obstacle"))
+        if (gameObject.tag == "Player" && (other.CompareTag("Enemy") || other.CompareTag("Obstacle")))
         {
             LoseLife();
         }
+    }
+
+    public void DeactivateInvincibilityPU()
+    {
+        HasInvinciblePU = false;
     }
 }

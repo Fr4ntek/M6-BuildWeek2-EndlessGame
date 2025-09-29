@@ -28,6 +28,11 @@ public class M_PlayerController : MonoBehaviour
     [SerializeField] private float slidePositionY = 0.3f;
     [SerializeField] private float slideDuration = 0.75f;
 
+    [Header("Invincibility settings")]
+    [SerializeField] private float _invincibleDistance = 100f;
+    private ParticleSystem _ps;
+    private float _startInvincibleDistance;
+
     public event Action<float> SpeedAnimation;
     public event Action Jump;
     public event Action Land;
@@ -55,6 +60,7 @@ public class M_PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         capsuleCollider = GetComponent<CapsuleCollider>();
+        _ps = GetComponentInChildren<ParticleSystem>();
 
         originalY = transform.position.y;
         originHeight = capsuleCollider.height;
@@ -88,6 +94,34 @@ public class M_PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space)) GoUp();
         if (Input.GetKeyDown(KeyCode.S)) GoDown();
+
+        if (Input.GetKeyDown(KeyCode.E) && LifeController.instance.HasInvinciblePU) ActivateInvincibility();
+        if (gameObject.tag == "Invincible") CheckInvincibilityDistance();
+    }
+
+    private void ActivateInvincibility()
+    {
+        Debug.Log($"Invincibilità attivata per {_invincibleDistance}");
+        // disattivo il power up
+        LifeController.instance.DeactivateInvincibilityPU();
+
+        if (gameObject.tag != "Invincible")
+        {
+            gameObject.tag = "Invincible";
+            _ps.Play();
+            // prendo la distanza attuale
+            _startInvincibleDistance = DistanceCounter.instance.GetDistance();
+        }
+    }
+
+    private void CheckInvincibilityDistance()
+    {
+        if (DistanceCounter.instance.GetDistance() - _startInvincibleDistance >= _invincibleDistance)
+        {
+            gameObject.tag = "Player";
+            _ps.Stop();
+            Debug.Log("Invincibilità disattivata");
+        }
     }
 
     private void GoLeft()

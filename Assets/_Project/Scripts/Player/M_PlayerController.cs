@@ -30,8 +30,11 @@ public class M_PlayerController : MonoBehaviour
 
     [Header("Invincibility settings")]
     [SerializeField] private float _invincibleDistance = 100f;
-    private ParticleSystem _ps;
+    [SerializeField] private float _blinkInterval = 0.2f;
     private float _startInvincibleDistance;
+    private ParticleSystem _ps;
+    private Coroutine _blinkRoutine;
+    private Renderer[] _renderers; 
 
     public event Action<float> SpeedAnimation;
     public event Action Jump;
@@ -61,6 +64,7 @@ public class M_PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         capsuleCollider = GetComponent<CapsuleCollider>();
         _ps = GetComponentInChildren<ParticleSystem>();
+        _renderers = GetComponentsInChildren<Renderer>();
 
         originalY = transform.position.y;
         originHeight = capsuleCollider.height;
@@ -101,7 +105,7 @@ public class M_PlayerController : MonoBehaviour
 
     private void ActivateInvincibility()
     {
-        Debug.Log($"Invincibilità attivata per {_invincibleDistance}");
+        Debug.Log($"Invincibilità attivata per {_invincibleDistance} metri");
         // disattivo il power up
         LifeController.instance.DeactivateInvincibilityPU();
 
@@ -109,7 +113,10 @@ public class M_PlayerController : MonoBehaviour
         {
             gameObject.tag = "Invincible";
             _ps.Play();
-            // prendo la distanza attuale
+            // inizio a lampeggiare
+            if (_blinkRoutine != null) StopCoroutine(_blinkRoutine);
+            _blinkRoutine = StartCoroutine(InvincibilityBlinking());
+            
             _startInvincibleDistance = DistanceCounter.instance.GetDistance();
         }
     }
@@ -120,7 +127,29 @@ public class M_PlayerController : MonoBehaviour
         {
             gameObject.tag = "Player";
             _ps.Stop();
+            if (_blinkRoutine != null)
+            {
+                StopCoroutine(_blinkRoutine);
+                _blinkRoutine = null;
+            }
+
+            foreach (var rend in _renderers)
+                rend.enabled = true;
             Debug.Log("Invincibilità disattivata");
+        }
+    }
+
+    private IEnumerator InvincibilityBlinking()
+    {
+        bool isEnabled = true;
+
+        while (true)
+        {
+            foreach (var rend in _renderers)
+                rend.enabled = isEnabled;
+
+            isEnabled = !isEnabled;
+            yield return new WaitForSeconds(_blinkInterval);
         }
     }
 

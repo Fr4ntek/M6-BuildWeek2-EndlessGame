@@ -11,6 +11,8 @@ public class Enemy_WarningMeteor : MonoBehaviour
     [SerializeField] private AnimationCurve meteorCurve;
     [SerializeField] private Vector3 positionSpawnMeteorFromPlayer;
 
+    [SerializeField] private GameObject impactVfx;
+
     public Transform Player { get; set; }
     public float WarningDistanceToPlayer { get; set; }
 
@@ -64,6 +66,8 @@ public class Enemy_WarningMeteor : MonoBehaviour
         meteor.transform.rotation = randomRotation;
 
         //if (ManagerPoolObj.Instance != null) ManagerPoolObj.Instance.ReturnToPool(id, gameObject);
+        if(impactVfx != null) Instantiate(impactVfx, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     private void OnDisable()

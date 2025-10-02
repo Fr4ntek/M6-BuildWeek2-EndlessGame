@@ -27,6 +27,7 @@ public class M_PlayerController : MonoBehaviour
     [SerializeField] private float slideHeight = 0.3f;
     [SerializeField] private float slidePositionY = 0.3f;
     [SerializeField] private float slideDuration = 0.75f;
+    [SerializeField] private ParticleSystem[] slideVfx;
 
     [Header("Invincibility settings")]
     [SerializeField] private float _invincibleDistance = 100f;
@@ -73,6 +74,9 @@ public class M_PlayerController : MonoBehaviour
         hasLowGravity = GameManager.instance.SaveData.perdiPeso;
         jumpDuration = hasLowGravity? jumpDurationLowGravity : jumpDurationNormal;
         jumpCurve = hasLowGravity? jumpCurveLowGravity : jumpCurveNormal;
+
+
+        if(slideVfx != null) foreach(ParticleSystem p in slideVfx) p.enableEmission = false;
     }
 
     private void Update()
@@ -222,7 +226,7 @@ public class M_PlayerController : MonoBehaviour
     {
         if (transform.position.y != originalY) yield return StartCoroutine(RestorPosRoutine());
         float startY = originalY;
-
+        if (slideVfx != null) foreach (ParticleSystem p in slideVfx) p.enableEmission = false;
         Jump?.Invoke();
         float progress = 0f;
 
@@ -244,6 +248,7 @@ public class M_PlayerController : MonoBehaviour
         float startY = originalY;
 
         Slide?.Invoke();
+        if (slideVfx != null) foreach (ParticleSystem p in slideVfx) p.enableEmission = true;
         float progress = 0f;
 
         while (progress < slideDuration)
@@ -256,7 +261,7 @@ public class M_PlayerController : MonoBehaviour
             if (progress >= 0.2f) isJumping = false;
             yield return null;
         }
-
+        if (slideVfx != null) foreach (ParticleSystem p in slideVfx) p.enableEmission = false;
         OnFinishAction();
     }
 

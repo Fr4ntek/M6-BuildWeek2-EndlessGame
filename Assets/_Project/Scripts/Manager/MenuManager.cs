@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private AudioSource maxAudio;
     [SerializeField] private AudioClip _buttonSound;
     [SerializeField] private AudioClip _cashAudio;
+
+    [SerializeField] private Button buttonResetSave;
     
     public TextMeshProUGUI coinText;
     public TextMeshProUGUI scoreText;
@@ -20,6 +23,8 @@ public class MenuManager : MonoBehaviour
     {
         // All'inizio mostra il menu principale
         ShowMainMenu();
+
+        if(buttonResetSave != null) buttonResetSave.onClick.AddListener(() => ResetSave());
     }
 
     // Produce il suono al click del bottone
@@ -63,6 +68,8 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene(1);
         Time.timeScale = 1f;
     }
+
+    public void ResetSave() => GameManager.instance.ResetSave();
 
     // Chiude l'applicazione
     public void QuitGame()

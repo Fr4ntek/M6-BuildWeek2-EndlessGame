@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEditor.Rendering;
+using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour
@@ -107,6 +108,14 @@ public class GameManager : MonoBehaviour
         {
             SaveData = new SaveData();
         }
+    }
+
+    public void ResetSave()
+    {
+        if (File.Exists(saveFilePath)) File.Delete(saveFilePath);
+        SaveData = new SaveData();
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
 

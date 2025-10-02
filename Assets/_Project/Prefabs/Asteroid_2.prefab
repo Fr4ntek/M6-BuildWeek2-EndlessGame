@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5073602666965217110}
   - component: {fileID: 3033559808465577715}
   - component: {fileID: 5362903407085702968}
+  - component: {fileID: -9003357241766453331}
   m_Layer: 0
   m_Name: Asteroid_2
   m_TagString: Obstacle
@@ -103,5 +104,17 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.033438068, y: 0.02287611, z: 0.022204503}
+  m_Size: {x: 0.033438068, y: 0.02287611, z: 0.0192045}
   m_Center: {x: -0.00012189336, y: -0.0000672303, z: -0.000024746634}
+--- !u!114 &-9003357241766453331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6643307193466693339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5332b67d07aa81d44aa8fae99a17afd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

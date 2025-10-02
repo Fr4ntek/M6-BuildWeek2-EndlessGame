@@ -232,7 +232,7 @@ public class BoosOrckAnimation : BossAnimation
         //root.gameObject.SetActive(false);
         //root.localPosition = new Vector3(0, 0, 0);
 
-        StartCoroutine(DisableRoutine());
+        if (gameObject.activeInHierarchy) StartCoroutine(GoToStarAnimationRoutione()); StartCoroutine(DisableRoutine());
     }
 
     private IEnumerator DisableRoutine()
@@ -256,7 +256,7 @@ public class BoosOrckAnimation : BossAnimation
     private IEnumerator GoToEnableRoutine()
     {
         yield return null;
-        transform.position = new Vector3(transform.position.x, transform.position.y, player.position.z + 100);
+        //transform.position = new Vector3(transform.position.x, transform.position.y, player.position.z + 100);
         yield return new WaitForSeconds(0.5f);
         root.gameObject.SetActive(true);
 

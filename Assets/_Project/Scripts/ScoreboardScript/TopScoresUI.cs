@@ -8,7 +8,7 @@ public class TopScoresUI : MonoBehaviour
 
     private void OnEnable() => Refresh();
 
-    // Aggiorna la UI con i dati salvati in GameManager.instance.saveData
+    // Aggiorna la UI con i dati salvati in GameManager.Instance.saveData
     public void Refresh()
     {
         if (GameManager.instance == null)

@@ -12,7 +12,9 @@ public class BossType
 
 public class BossManager : MonoBehaviour
 {
+    [SerializeField] private Transform player;
     [SerializeField] private float timeForshow = 2;
+    [SerializeField] private float distanceToPlayerZ = 100;
 
     [SerializeField] private List<BossType> bossList;
 
@@ -30,7 +32,17 @@ public class BossManager : MonoBehaviour
             int randomBoss = UnityEngine.Random.Range(0, bossList.Count);
             Debug.Log("Boss type " + randomBoss);
             yield return new WaitForSeconds(timeForshow);
-            bossList[randomBoss].boss.gameObject.SetActive(true);
+
+            BoosLogicAttack boss = bossList[randomBoss].boss;
+            Debug.Log("Old Pos Boss " + boss.transform.position);
+
+            Vector3 targetPosBoss = boss.transform.position;
+            targetPosBoss.z = distanceToPlayerZ + player.transform.position.z;
+            boss.transform.position = targetPosBoss;
+            Debug.Log("New Pos Boss " + boss.transform.position + targetPosBoss);
+            yield return new WaitForSeconds(0.1f);
+
+            boss.gameObject.SetActive(true);
             //boss[0].BossAnimation.GoToEnableAnimation(boss[0].Player);
 
             yield return new WaitForSeconds(bossList[randomBoss].timeOnSpot);

@@ -68,7 +68,8 @@ public class ShakeAnimation : BossAnimation
         StopAllCoroutines();
         lookPlayer = false;
         isOnAnimationStar = true;
-        StartCoroutine(GoToStarAnimationRoutione());
+
+        if(gameObject.activeInHierarchy) StartCoroutine(GoToStarAnimationRoutione());
     }
 
     private IEnumerator IdleShakeRoutine()
@@ -161,7 +162,6 @@ public class ShakeAnimation : BossAnimation
         yield return StartCoroutine(LerpPositionRotationRoutine(head, speedIdleMovement, currentPosition, currentRotation, startLocalPositionHead, startLocalRotationHead, true));
         StartCoroutine(IdleShakeRoutine());
     }
-
 
 
     private IEnumerator AttackOneRoutine(float angle, float posX, float targetX, float constanceForceX)
@@ -272,7 +272,7 @@ public class ShakeAnimation : BossAnimation
     private IEnumerator GoToEnableRoutine()
     {
         yield return null;
-        transform.position = new Vector3(transform.position.x, transform.position.y, lookTarget.position.z + 100);
+        //transform.position = new Vector3(transform.position.x, transform.position.y, lookTarget.position.z + 100);
         head.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.5f);
 

@@ -39,6 +39,7 @@ public class LifeController : MonoBehaviour
         if (_currentLife >= 1)
         {
             RespawnPlayer();
+            UIManager.Instance.UpdateLifePlayer(_currentLife);
         }
         else
         {

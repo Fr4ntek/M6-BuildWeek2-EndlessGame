@@ -33,9 +33,5 @@ public class CoinManager : MonoBehaviour
         UpdateUI();
     }
 
-    private void UpdateUI()
-    {
-        coinsText.text = "Coins: " + _coinCount;
-    }
-
+    private void UpdateUI() => UIManager.Instance.AddCoin(_coinCount);
 }

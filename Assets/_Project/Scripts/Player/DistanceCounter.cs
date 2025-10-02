@@ -36,8 +36,10 @@ public class DistanceCounter : MonoBehaviour
         
         float metri = distance * scale;
 
-       
-        distanceText.text = Mathf.FloorToInt(metri).ToString();
+
+        //distanceText.text = Mathf.FloorToInt(metri).ToString();
+
+        UIManager.Instance.UpdateDistancePlayer((int)distance);
     }
 
     public int GetDistance()

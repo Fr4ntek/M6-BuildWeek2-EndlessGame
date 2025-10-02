@@ -150,6 +150,8 @@ public class M_PlayerController : MonoBehaviour
 
             isEnabled = !isEnabled;
             yield return new WaitForSeconds(_blinkInterval);
+
+            UIManager.Instance.HasInvincibility(false);
         }
     }
 

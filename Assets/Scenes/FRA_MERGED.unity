@@ -177,7 +177,7 @@ MonoBehaviour:
   - {fileID: 6432029244034106907, guid: f33fb36cb975f184497789582aa989bf, type: 3}
   - {fileID: 2457236285702035017, guid: 21bfa42cbb241df48828d8d165fa4cc8, type: 3}
   poolSize: 20
-  spawnDistance: 100
+  spawnDistance: 65
   recycleDistance: 15
   spawnInterval: 1.5
   coinYOffset: 1
@@ -2920,13 +2920,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1819852483}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15211758, y: 0.0013274992, z: -0.008624902, w: 0.9883239}
+  m_LocalRotation: {x: 0.1391678, y: 0.001214489, z: -0.008641539, w: 0.99023044}
   m_LocalPosition: {x: 0, y: 6, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 17.5, y: 0, z: -1}
+  m_LocalEulerAnglesHint: {x: 16, y: 0, z: -1}
 --- !u!114 &1819852488
 MonoBehaviour:
   m_ObjectHideFlags: 0
